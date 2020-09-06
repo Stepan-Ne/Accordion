@@ -4,8 +4,8 @@ import {action} from "@storybook/addon-actions";
 
 
 export default {
-  title: 'Accordion',
-  component: Accordion,
+    title: 'Accordion',
+    component: Accordion,
 };
 const callback = action("accordion mode change event fired");
 const callbackItem = action("item was clicked");
@@ -14,13 +14,16 @@ export const MenuCollapsed = () => <Accordion titleValue={"Menu"} collapsed={tru
                                               onChange={callback} onClickItem={callbackItem}/>
 export const UsersUncollapsedMode = () => <Accordion titleValue={"Users"} collapsed={false}
                                                      items={[{title: "on", value: 1},
-                                                       {title: "click", value: 2}, {title: "handler", value: 3}]}
+                                                         {title: "click", value: 2}, {title: "handler", value: 3}]}
                                                      onChange={callback} onClickItem={callbackItem}/>
 
 export const MadeChanging = () => {
-  const [value, setValue] = useState<boolean>(true);
-  return <Accordion titleValue={"Users"} collapsed={value} onChange={() => setValue(!value)}
-                    items={[{title: "on", value: 1},
-                      {title: "click", value: 2}, {title: "handler", value: 3}]}
-                    onClickItem={callbackItem}/>
+    const [value, setValue] = useState<boolean>(true);
+    return <Accordion titleValue={"Users"} collapsed={value} onChange={() => setValue(!value)}
+                      items={[
+                          {title: "on", value: 1},
+                          {title: "click", value: 2},
+                          {title: "handler", value: 3}
+                      ]}
+                      onClickItem={(id) => alert(`it is ${id}`)}/>
 }
