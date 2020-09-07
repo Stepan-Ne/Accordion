@@ -1,0 +1,14 @@
+.title {
+    border: 1px solid orange;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+}
+.list {
+    border: 1px solid orange;
+    display: block;
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+}
