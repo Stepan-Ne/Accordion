@@ -41,8 +41,8 @@ export const WithValue = () => {
 };
 
 export const WithoutValue = () => {
-    const [title, setTitle] = useState<"0" | "1" | "2" | "3">("0");
-    function onChangeHandler(value: string) {
+    const [title, setTitle] = useState<null | "1" | "2" | "3">(null);
+    function onChangeHandler(value: any) {
         switch (value) {
             case "1":
                 setTitle("1");

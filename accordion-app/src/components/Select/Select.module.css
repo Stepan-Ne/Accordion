@@ -2,6 +2,7 @@
     border: 1px solid orange;
     display: inline-block;
     width: 100px;
+    min-height: 15px;
     text-align: center;
     padding: 5px;
 }
@@ -16,6 +17,10 @@
     margin-top: 5px;
 }
 .item:hover {
+    background-color: skyblue;
+    color: white;
+}
+.selectedItem {
     background-color: skyblue;
     color: white;
 }

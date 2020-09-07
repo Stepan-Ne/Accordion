@@ -3,10 +3,10 @@ import s from "./Select.module.css"
 
 type ItemType = {
     title: string
-    value: string
+    value: any
 }
 type SelectPropsType = {
-    value: string
+    value: any
     onChange: (value: any) => void
     items: ItemType[]
 }
@@ -14,8 +14,16 @@ type SelectPropsType = {
 export function Select(props: SelectPropsType) {
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [hoverElement, setHoverElemen] = useState("");
     const selectedItem = props.items.find(i => i.value === props.value);
     const toggleItems = () => setCollapsed(!collapsed);
+    const onItemClick = (value: any) => {
+        props.onChange(value);
+        toggleItems();
+    };
+    const hoveredItem = (value: any) => {
+            setHoverElemen(value);
+    }
 
     return (
         <div>
@@ -23,10 +31,11 @@ export function Select(props: SelectPropsType) {
                 <b>{selectedItem && selectedItem.title}</b>
             </div>
             {collapsed && <div className={s.list}>
-                {props.items.map(i => <div key={i.value} className={s.item}
-                                           onClick={() => props.onChange(i.value)}>{i.title}</div>)}
+                {props.items.map(i => <div key={i.value}
+                                           onMouseEnter={() => hoveredItem(i.value)}
+                                           className={s.item + " " + (hoverElement === i.value ? s.selectedItem : "")}
+                                           onClick={() => onItemClick(i.value)}>{i.title}</div>)}
             </div>}
         </div>
-
     )
 }
