@@ -12,3 +12,10 @@
     text-align: center;
     padding: 5px;
 }
+.item {
+    margin-top: 5px;
+}
+.item:hover {
+    background-color: skyblue;
+    color: white;
+}

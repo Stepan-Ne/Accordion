@@ -15,15 +15,18 @@ export function Select(props: SelectPropsType) {
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const selectedItem = props.items.find(i => i.value === props.value);
+    const toggleItems = () => setCollapsed(!collapsed);
 
     return (
         <div>
-            <div onClick={() => setCollapsed(!collapsed)} className={s.title}>
+            <div onClick={toggleItems} className={s.title}>
                 <b>{selectedItem && selectedItem.title}</b>
             </div>
-            {collapsed && props.items.map(i => <div
-                key={i.value} className={s.list}
-                onClick={() => props.onChange(i.value)}>{i.title}</div>)}
+            {collapsed && <div className={s.list}>
+                {props.items.map(i => <div key={i.value} className={s.item}
+                                           onClick={() => props.onChange(i.value)}>{i.title}</div>)}
+            </div>}
         </div>
+
     )
 }
