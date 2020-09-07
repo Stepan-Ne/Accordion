@@ -3,10 +3,10 @@ import s from "./Select.module.css"
 
 type ItemType = {
     title: string
-    value: any
+    value: string
 }
 type SelectPropsType = {
-    value: any
+    value: string
     onChange: (value: any) => void
     items: ItemType[]
 }
@@ -14,17 +14,12 @@ type SelectPropsType = {
 export function Select(props: SelectPropsType) {
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const selectedItem = props.items.find(i => i.value === props.value);
 
-    function findElem(items: ItemType[], value: any) {
-        let x = items.find(i => i.title === value);
-        if(x) {
-            return x.title;
-        }
-    }
     return (
         <div>
-            <div onClick={() => setCollapsed(!collapsed)}className={s.title}>
-                {findElem(props.items, props.value)}
+            <div onClick={() => setCollapsed(!collapsed)} className={s.title}>
+                <b>{selectedItem && selectedItem.title}</b>
             </div>
             {collapsed && props.items.map(i => <div
                 key={i.value} className={s.list}
